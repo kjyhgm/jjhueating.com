@@ -66,17 +66,31 @@ h1 {
   font-size: 16px;
 }
 
-.result {
-  margin-top: 15px;
-  font-size: 18px;
+.result-box {
+  margin: 15px 0;
+  padding: 15px 20px;
+  font-size: 22px;
   font-weight: bold;
+  border: 2px solid #000;
+  border-radius: 12px;
+  background: #fff;
+  width: fit-content;
+  max-width: 90%;
+  text-align: center;
+  align-self: center;
 }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>🍚 주애 오늘 뭐 먹지?</h1>
+  <h1>🍚 오늘 뭐 먹지?</h1>
 
+  <!-- 추천메뉴 박스 -->
+
+  <div class="result" id="result">👉 이거나 처먹어</div>
+
+  <button class="recommend-btn" id="recommendBtn">추천 받기</button>
+  
   <!-- 카테고리 1 -->
   <div class="category" id="cat1">
     <h4>📁종류</h4> <!-- 카테고리 1 제목 -->
@@ -106,10 +120,6 @@ h1 {
     <button class="btn">술/야식</button>
     <button class="btn">간식</button>
   </div>
-
-  <button class="recommend-btn" id="recommendBtn">추천 받기</button>
-
-  <div class="result" id="result">👉 이거나 처먹어</div>
 </div>
 
 <script>
