@@ -34,13 +34,6 @@ h1 {
   margin-bottom: 20px;
 }
 
-.category .btn-container {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: nowrap; /* wrap 제거 */
-}
-
 .category {
 display: flex;
 flex-direction: column; /* 제목 위, 버튼 아래 세로 정렬 */
@@ -48,6 +41,13 @@ align-items: center;    /* 제목과 버튼 모두 가로 중앙 */
 margin: 20px 0;         /* 카테고리 위아래 간격 */
 }
 
+.category .btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: nowrap; /* 줄바꿈 없음 */
+}
+  
 /* 제목 중앙 정렬 */
 .category h4 {
   margin: 0;
@@ -113,6 +113,7 @@ margin: 20px 0;         /* 카테고리 위아래 간격 */
   <!-- 카테고리 1 -->
   <div class="category" id="cat1">
     <h4>📁종류</h4>
+    <div class="btn-container">
     <button class="btn">한식</button>
     <button class="btn">중식</button>
     <button class="btn">일식</button>
@@ -123,6 +124,7 @@ margin: 20px 0;         /* 카테고리 위아래 간격 */
   <!-- 카테고리 2 -->
   <div class="category" id="cat2">
     <h4>🍗메뉴 형태</h4>
+    <div class="btn-container">
     <button class="btn">국물</button>
     <button class="btn">밥</button>
     <button class="btn">면</button>
@@ -133,6 +135,7 @@ margin: 20px 0;         /* 카테고리 위아래 간격 */
   <!-- 카테고리 3 -->
   <div class="category" id="cat3">
     <h4>😋상황</h4>
+    <div class="btn-container">
     <button class="btn">혼밥</button>
     <button class="btn">데이트</button>
     <button class="btn">배달</button>
