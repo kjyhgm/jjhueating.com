@@ -1,117 +1,156 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>오늘 뭐 먹지?</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f4f4f4;
-      text-align: center;
-      padding: 40px;
-    }
-    h1 {
-      margin-bottom: 30px;
-    }
-    .section {
-      margin-bottom: 25px;
-    }
-    button {
-      margin: 5px;
-      padding: 8px 14px;
-      border: none;
-      border-radius: 20px;
-      background: white;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    button.active {
-      background: black;
-      color: white;
-    }
-    #result {
-      margin-top: 40px;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .start-btn {
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: black;
-      color: white;
-      border-radius: 30px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오늘 뭐 먹지?</title>
+<style>
+body {
+  font-family: 'Apple SD Gothic Neo', sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 30px 10px;
+  background: #f7f7f7;
+}
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.category {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+}
+
+.btn.selected {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.recommend-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.result {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+</style>
 </head>
 <body>
-
+<div class="container">
   <h1>🍚 오늘 뭐 먹지?</h1>
 
-  <div class="section">
-    <h3>상황 선택 (선택 안 해도 됨)</h3>
-    <div id="include"></div>
+  <!-- 카테고리 1 -->
+  <div class="category" id="cat1">
+    <button class="btn">한식</button>
+    <button class="btn">중식</button>
+    <button class="btn">일식</button>
+    <button class="btn">양식</button>
+    <button class="btn">아시아</button>
   </div>
 
-  <div class="section">
-    <h3>제외할 것</h3>
-    <div id="exclude"></div>
+  <!-- 카테고리 2 -->
+  <div class="category" id="cat2">
+    <button class="btn">국물</button>
+    <button class="btn">밥</button>
+    <button class="btn">면</button>
+    <button class="btn">고기</button>
+    <button class="btn">간식</button>
   </div>
 
-  <button class="start-btn" onclick="recommend()">추천 받기</button>
+  <!-- 카테고리 3 -->
+  <div class="category" id="cat3">
+    <button class="btn">혼밥</button>
+    <button class="btn">데이트</button>
+    <button class="btn">배달</button>
+    <button class="btn">술/야식</button>
+    <button class="btn">간식</button>
+  </div>
 
-  <div id="result"></div>
+  <button class="recommend-btn" id="recommendBtn">추천 받기</button>
+
+  <div class="result" id="result">👉 여기에 추천이 표시됩니다</div>
+</div>
 
 <script>
+// 음식 데이터 (태그 기준)
 const foods = [
-  { name: "라면", tags: ["가볍게", "자극", "한식", "면"] },
-  { name: "치킨", tags: ["술각", "기름짐", "튀김", "한식"] },
-  { name: "초밥", tags: ["든든", "일식", "밥"] },
-  { name: "마라탕", tags: ["자극", "중식"] },
-  { name: "샐러드", tags: ["가볍게", "다이어트"] },
-  { name: "제육볶음", tags: ["든든", "자극", "한식"] }
+  { name: "김치찌개", tags: ["한식", "국물", "혼밥", "배달"] },
+  { name: "제육볶음", tags: ["한식", "고기", "밥", "혼밥"] },
+  { name: "삼겹살", tags: ["한식", "고기", "배달", "술/야식"] },
+  { name: "짬뽕", tags: ["중식", "면", "혼밥", "배달"] },
+  { name: "짜장면", tags: ["중식", "면", "혼밥", "배달"] },
+  { name: "탕수육", tags: ["중식", "고기", "간식", "배달"] },
+  { name: "초밥", tags: ["일식", "밥", "데이트", "혼밥"] },
+  { name: "라멘", tags: ["일식", "면", "혼밥", "배달"] },
+  { name: "돈카츠", tags: ["일식", "고기", "혼밥", "간식"] },
+  { name: "파스타", tags: ["양식", "면", "데이트", "혼밥"] },
+  { name: "피자", tags: ["양식", "고기", "배달", "술/야식"] },
+  { name: "햄버거", tags: ["양식", "고기", "혼밥", "배달"] },
+  { name: "치킨", tags: ["간식", "고기", "술/야식", "배달"] },
+  { name: "떡볶이", tags: ["분식", "간식", "혼밥", "배달"] },
+  { name: "쭈꾸미볶음", tags: ["한식", "고기", "혼밥", "술/야식"] },
 ];
 
-const includeTags = ["든든", "가볍게", "술각", "자극", "다이어트"];
-const excludeTags = ["면", "밥", "튀김"];
-
-let selectedInclude = [];
-let selectedExclude = [];
-
-function createButtons(tags, containerId, selectedArray) {
-  const container = document.getElementById(containerId);
-  tags.forEach(tag => {
-    const btn = document.createElement("button");
-    btn.innerText = tag;
-    btn.onclick = () => {
-      btn.classList.toggle("active");
-      if (selectedArray.includes(tag)) {
-        selectedArray.splice(selectedArray.indexOf(tag), 1);
-      } else {
-        selectedArray.push(tag);
-      }
-    };
-    container.appendChild(btn);
+// 버튼 클릭 선택 토글
+document.querySelectorAll(".category").forEach(cat => {
+  cat.addEventListener("click", e => {
+    if(e.target.classList.contains("btn")){
+      e.target.classList.toggle("selected");
+    }
   });
-}
+});
 
-createButtons(includeTags, "include", selectedInclude);
-createButtons(excludeTags, "exclude", selectedExclude);
+// 추천 버튼
+document.getElementById("recommendBtn").addEventListener("click", () => {
+  const selectedTags = Array.from(document.querySelectorAll(".btn.selected")).map(b => b.textContent);
 
-function recommend() {
-  let filtered = foods.filter(food =>
-    selectedInclude.every(tag => food.tags.includes(tag)) &&
-    selectedExclude.every(tag => !food.tags.includes(tag))
+  // 필터링
+  let filtered = foods.filter(food => 
+    selectedTags.every(tag => food.tags.includes(tag))
   );
 
-  if (filtered.length === 0) {
-    document.getElementById("result").innerText = "조건에 맞는 음식이 없음 ㅠ";
-    return;
-  }
+  // 후보 없으면 전체에서 랜덤
+  if(filtered.length === 0) filtered = foods;
 
-  const random = filtered[Math.floor(Math.random() * filtered.length)];
-  document.getElementById("result").innerText = "👉 " + random.name;
-}
+  const choice = filtered[Math.floor(Math.random() * filtered.length)];
+
+  document.getElementById("result").textContent = `👉 ${choice.name}`;
+});
 </script>
-
 </body>
 </html>
