@@ -105,38 +105,39 @@ margin: 20px 0;         /* 카테고리 위아래 간격 */
   <h1>🍚 오늘 뭐 먹지?</h1>
 
   <!-- 추천메뉴 박스 -->
-
   <div class="result-box" id="result">이거나 처먹어</div>
-
   <button class="recommend-btn" id="recommendBtn">Click</button>
   
   <!-- 카테고리 1 -->
   <div class="category" id="cat1">
     <h4>📁종류</h4>
     <div class="btn-container">
-    <button class="btn">한식</button>
-    <button class="btn">중식/아시아</button>
-    <button class="btn">일식</button>
-    <button class="btn">양식</button>
+      <button class="btn">한식</button>
+      <button class="btn">중식/아시아</button>
+      <button class="btn">일식</button>
+      <button class="btn">양식</button>
+    </div>
   </div>
 
   <!-- 카테고리 2 -->
   <div class="category" id="cat2">
     <h4>🍗형태</h4>
     <div class="btn-container">
-    <button class="btn">국물</button>
-    <button class="btn">밥</button>
-    <button class="btn">면</button>
-    <button class="btn">고기</button>
-    <button class="btn">빵</button>
+      <button class="btn">국물</button>
+      <button class="btn">밥</button>
+      <button class="btn">면</button>
+      <button class="btn">고기</button>
+      <button class="btn">빵</button>
+    </div>
   </div>
 
   <!-- 카테고리 3 -->
     <div class="category" id="cat3">
     <h4>💬기타</h4>
     <div class="btn-container">
-    <button class="btn">매콤</button>
-    <button class="btn">간단</button>
+      <button class="btn">매콤</button>
+      <button class="btn">간단</button>
+    </div>
   </div>
 </div>
 
@@ -221,8 +222,10 @@ const foods = [
 ];
 
 // 버튼 클릭 선택 토글
-document.querySelectorAll(".category .btn").forEach(cat => {
-   btn.addEventListener("click", () => btn.classList.toggle("selected"));
+document.querySelectorAll(".category .btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    btn.classList.toggle("selected");
+  });
 });
 
 // 추천 버튼
