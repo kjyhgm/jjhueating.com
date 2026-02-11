@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <style>
 body {
-  ffont-family: 'Gowun Dodum', sans-serif;
+  font-family: 'Gowun Dodum', sans-serif;
   display: flex;
   justify-content: center;
   padding: 30px 10px;
@@ -153,8 +153,11 @@ const foods = [
   { name: "설렁탕", tags: ["한식", "국물"] },
   { name: "돼지국밥", tags: ["한식", "국물", "해장"] },
   { name: "냉면", tags: ["한식", "면", "간단"] },
+  { name: "잔치국수", tags: ["한식", "면", "간단"] },
+  { name: "비빔국수", tags: ["한식", "면", "간단"] },
   { name: "라면", tags: ["한식", "국물", "면", "매콤"] },
   { name: "김치찜", tags: ["한식", "국물", "고기", "매콤"] },
+  { name: "김치짜글이", tags: ["한식", "국물", "고기", "매콤"] },
   { name: "제육덮밥", tags: ["한식", "고기", "밥", "매콤"] },
   { name: "삼겹살", tags: ["한식", "고기", "술", "모임"] },
   { name: "갈매기살", tags: ["한식", "고기"] },
@@ -163,6 +166,10 @@ const foods = [
   { name: "치킨", tags: ["한식", "고기"] },
   { name: "보쌈", tags: ["한식", "고기"] },
   { name: "불고기덮밥", tags: ["한식", "고기", "밥"] },
+  { name: "김치볶음밥", tags: ["한식", "밥", "매콤"] },
+  { name: "치킨마요덮밥", tags: ["한식", "밥", "간단"] },
+  { name: "컵밥", tags: ["한식", "밥", "간단"] },
+  { name: "전", tags: ["한식", "간단"] },
 
   <!-- 중식,아시아 -->
   { name: "짜장면", tags: ["중식/아시아", "면"] },
@@ -188,6 +195,7 @@ const foods = [
   { name: "야키토리", tags: ["일식", "고기"] },
    
   <!-- 양식 -->
+  { name: "스테이크", tags: ["양식", "고기"] },
   { name: "파스타", tags: ["양식", "면"] },
   { name: "필라프", tags: ["양식", "밥"] },
   { name: "리조또", tags: ["양식", "밥"] },
@@ -199,8 +207,6 @@ const foods = [
   { name: "타코", tags: ["양식", "고기", "빵", "간단"] }, 
   
   <!-- 간단 -->
-  { name: "치킨마요덮밥", tags: ["한식", "밥", "간단"] },
-  { name: "컵밥", tags: ["한식", "밥", "간단"] },
   { name: "로제떡볶이", tags: ["한식, "밥", "간단"] },
   { name: "닭강정", tags: ["한식", "고기", "간단"] },
   { name: "닭꼬치", tags: ["한식", "고기", "간단"] },
@@ -215,12 +221,8 @@ const foods = [
 ];
 
 // 버튼 클릭 선택 토글
-document.querySelectorAll(".category").forEach(cat => {
-  cat.addEventListener("click", e => {
-    if(e.target.classList.contains("btn")){
-      e.target.classList.toggle("selected");
-    }
-  });
+document.querySelectorAll(".category .btn").forEach(cat => {
+   btn.addEventListener("click", () => btn.classList.toggle("selected"));
 });
 
 // 추천 버튼
