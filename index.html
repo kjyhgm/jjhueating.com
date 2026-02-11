@@ -43,6 +43,19 @@ h1 {
   flex-wrap: nowrap; /* wrap 제거 */
 }
 
+.category {
+display: flex;
+flex-direction: column; /* 제목 위, 버튼 아래 세로 정렬 */
+align-items: center;    /* 제목과 버튼 모두 가로 중앙 */
+margin: 20px 0;         /* 카테고리 위아래 간격 */
+}
+
+/* 제목 중앙 정렬 */
+.category h4 {
+  margin: 0;
+  text-align: center;
+}
+
 .category .btn {
   margin: 2px;            /* 버튼 사이 간격 */
 }
@@ -101,7 +114,7 @@ h1 {
   
   <!-- 카테고리 1 -->
   <div class="category" id="cat1">
-    <h4>📁종류</h4> <!-- 카테고리 1 제목 -->
+    <h4>📁종류</h4>
     <button class="btn">한식</button>
     <button class="btn">중식</button>
     <button class="btn">일식</button>
