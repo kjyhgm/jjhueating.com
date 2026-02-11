@@ -29,11 +29,15 @@ h1 {
 }
 
 .category {
-  margin: 10px 0;
+  margin: 20px 0;
   display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column; /* 제목 위, 버튼 아래 */
+  align-items: center;    /* 가운데 정렬 */
+  gap: 8px;               /* 제목-버튼 간격 + 버튼 간격 */
+}
+
+.category .btn {
+  margin: 2px;            /* 버튼 사이 간격 */
 }
 
 .btn {
@@ -77,13 +81,11 @@ h1 {
   <!-- 카테고리 1 -->
   <div class="category" id="cat1">
     <h4>📁종류</h4> <!-- 카테고리 1 제목 -->
-    <div class="buttons">
-      <button class="btn">한식</button>
-      <button class="btn">중식</button>
-      <button class="btn">일식</button>
-      <button class="btn">양식</button>
-      <button class="btn">아시아</button>
-    </div>
+    <button class="btn">한식</button>
+    <button class="btn">중식</button>
+    <button class="btn">일식</button>
+    <button class="btn">양식</button>
+    <button class="btn">아시아</button>
   </div>
 
   <!-- 카테고리 2 -->
@@ -108,7 +110,7 @@ h1 {
 
   <button class="recommend-btn" id="recommendBtn">추천 받기</button>
 
-  <div class="result" id="result">👉 여기에 추천이 표시됩니다</div>
+  <div class="result" id="result">👉 이거나 처먹어</div>
 </div>
 
 <script>
